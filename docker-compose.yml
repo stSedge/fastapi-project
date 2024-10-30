@@ -11,6 +11,8 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - '127.0.0.1:5436:5432'
+    networks:
+      - java-luchshe_default
     healthcheck:
       # this command checks if the database is ready, right on the source db server
       test: [ "CMD-SHELL", "pg_isready" ]
@@ -18,6 +20,27 @@ services:
       timeout: 5s
       retries: 5
 
+  fast-app:
+    depends_on:
+      - postgres
+    image: fastapi_app
+
+    networks:
+      - java-luchshe_default
+    env_file:
+      - .env
+    ports:
+      - '127.0.0.1:8020:8000'
+    build:
+      context: .
+    pull_policy: build
+    entrypoint: sh -c "./java_luchshe/start.sh"
+
+
+networks:
+  java-luchshe_default:
+    name: java-luchshe_default
+    driver: bridge
 
 volumes:
   db_data:
