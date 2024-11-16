@@ -1,12 +1,13 @@
 from pydantic import BaseModel, ConfigDict
+from datetime import date
 from typing import Optional
 
-class UserSchema(BaseModel):
+class SellerSchema(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
     id: int
     name: str
     age: int
     gender: str
-    total_sum: int
-    discount: Optional[int]
+    data_start: date
+    data_end: Optional[date]

@@ -5,8 +5,7 @@ from sqlalchemy import JSON, MetaData, String
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 from sqlalchemy.orm import DeclarativeBase
 
-from project.core.config import settings
-
+from java_luchshe.project.core.config import settings
 
 class PostgresDatabase:
     def __init__(self) -> None:

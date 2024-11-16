@@ -15,7 +15,7 @@ COPY ./java_luchshe /app/java_luchshe
 COPY migration /app/migration
 COPY alembic.ini /app/
 COPY pyproject.toml /app/
-ENV PYTHONPATH /app/java_luchshe
+ENV PYTHONPATH /app/
 WORKDIR /app
 RUN poetry config virtualenvs.create false \
     && poetry install --no-root
