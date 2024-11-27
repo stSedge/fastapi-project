@@ -1,8 +1,11 @@
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
-class AddProductSchema(BaseModel):
+
+class AdditionalProductCreateUpdateSchema(BaseModel):
+    name: str
+
+class AdditionalProductSchema(AdditionalProductCreateUpdateSchema):
     model_config = ConfigDict(from_attributes=True)
 
     id: int
-    name: str
     id_type: int

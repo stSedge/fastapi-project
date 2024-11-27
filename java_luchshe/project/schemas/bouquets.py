@@ -1,10 +1,14 @@
-from pydantic import BaseModel, ConfigDict
-from typing import Optional
+from pydantic import BaseModel, ConfigDict, Field
 
-class BouquetSchema(BaseModel):
+
+class BouquetCreateUpdateSchema(BaseModel):
+    name: str
+    size: str | None = Field(default=None)
+
+
+class BouquetSchema(BouquetCreateUpdateSchema):
     model_config = ConfigDict(from_attributes=True)
 
     id: int
-    name: str
     id_type: int
-    size: Optional[str]
+    

@@ -1,10 +1,8 @@
-from pydantic import BaseModel, ConfigDict
 from datetime import date
+from pydantic import BaseModel, ConfigDict, Field
 
-class SellingSchema(BaseModel):
-    model_config = ConfigDict(from_attributes=True)
 
-    id: int
+class SellingCreateUpdateSchema(BaseModel):
     id_supply: int
     id_seller: int
     id_user: int
@@ -13,3 +11,8 @@ class SellingSchema(BaseModel):
     discount: int
     final_cost: int
     data: date
+
+class SellingSchema(SellingCreateUpdateSchema):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int

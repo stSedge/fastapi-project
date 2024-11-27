@@ -13,7 +13,9 @@ class User(Base):
     age: Mapped[int] = mapped_column(nullable=False)
     gender: Mapped[str] = mapped_column(nullable=False)
     total_sum: Mapped[int] = mapped_column(nullable=False)
-    discount: Mapped[str] = mapped_column(nullable=True)
+    discount: Mapped[int] = mapped_column(nullable=True)
+    email: Mapped[str] = mapped_column(nullable=False, unique=True)
+    password: Mapped[str] = mapped_column(nullable=False)
 
 
 class Seller(Base):

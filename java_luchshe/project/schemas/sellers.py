@@ -1,13 +1,15 @@
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from datetime import date
-from typing import Optional
 
-class SellerSchema(BaseModel):
-    model_config = ConfigDict(from_attributes=True)
-
-    id: int
+    
+class SellerCreateUpdateSchema(BaseModel):
     name: str
     age: int
     gender: str
     data_start: date
-    data_end: Optional[date]
+    data_end: date | None = Field(default=None)
+
+class SellerSchema(SellerCreateUpdateSchema):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
