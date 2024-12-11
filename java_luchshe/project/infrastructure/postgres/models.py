@@ -16,6 +16,7 @@ class User(Base):
     discount: Mapped[int] = mapped_column(nullable=True)
     email: Mapped[str] = mapped_column(nullable=False, unique=True)
     password: Mapped[str] = mapped_column(nullable=False)
+    is_admin: Mapped[bool] = mapped_column(nullable=False)
 
 
 class Seller(Base):

@@ -25,6 +25,23 @@ class UserRepository:
 
         return True if result else False
 
+    async def get_user_by_email(
+            self,
+            session: AsyncSession,
+            email: str,
+    ) -> UserSchema:
+        query = (
+            select(self._collection)
+            .where(self._collection.email == email)
+        )
+
+        user = await session.scalar(query)
+
+        if not user:
+            raise NotFound("User", _id=email)
+
+        return UserSchema.model_validate(obj=user)
+
     async def get_all_users(
         self,
         session: AsyncSession,
